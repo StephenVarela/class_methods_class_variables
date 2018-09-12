@@ -1,34 +1,66 @@
 class MyClass
+@@temp_var = "Hello"
 
-  def method1
-    return method2
+  def initialize
+    @greeting = ''
   end
 
-  def method2
-    return true
+  def greeting
+    return @greeting
   end
 
-  def method5(argu)
-    return argu
+  def greeting=(greeting)
+    @greeting = greeting
   end
 
-  def method6
-    return method5(MyClass.method3)
+
+  def self.get_greeting
+    return @@temp_var
   end
 
-  def method4
-    variable = MyClass.method3
-    return variable
+  def set_greeting
+    self.greeting=(MyClass.get_greeting)
   end
 
-  def self.method3
-    return true
-  end
 end
 
+
+class MyClass2
+@@temp_var = "Hello"
+
+  def initialize
+    @greeting = ''
+  end
+
+  def greeting
+    return @greeting
+  end
+
+  def set_my_greeting(greeting)
+    @greeting = greeting
+  end
+
+
+  def self.get_greeting
+    return @@temp_var
+  end
+
+  def set_greeting
+    set_my_greeting(MyClass2.get_greeting)
+  end
+
+end
+
+
+
+puts "with setter syntax"
 me = MyClass.new
-puts me.method1
+puts me.greeting
+me.set_greeting
+puts me.greeting
 
-puts me.method4
-
-puts me.method6
+puts "without setter syntax"
+myself = MyClass2.new
+puts myself.greeting
+myself.set_greeting
+puts myself.greeting
